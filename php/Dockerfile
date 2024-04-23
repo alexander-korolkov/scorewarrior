@@ -1,7 +1,6 @@
 FROM php:8.3-fpm
 
 WORKDIR /var/www/
-COPY composer.json composer.lock ./
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 RUN COMPOSER_ALLOW_SUPERUSER=1 composer install --no-dev --optimize-autoloader
