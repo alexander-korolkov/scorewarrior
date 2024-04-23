@@ -38,6 +38,7 @@ services:
       - server
     volumes:
       - db_volume:/var/lib/mysql/
+      - ./sql/:/docker-entrypoint-initdb.d/
 
   quasar-app:
     container_name: quasar-frontend
