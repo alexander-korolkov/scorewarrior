@@ -1,11 +1,10 @@
 FROM php:8.3-fpm
 
-WORKDIR /var/www/public/
-COPY composer.json composer.lock ../
+WORKDIR /var/www/
+COPY composer.json composer.lock ./
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-RUN cd /var/www \
-    && COMPOSER_ALLOW_SUPERUSER=1 composer install --no-dev --optimize-autoloader
+RUN COMPOSER_ALLOW_SUPERUSER=1 composer install --no-dev --optimize-autoloader
 
 RUN pecl install xdebug \
     && docker-php-ext-enable xdebug \
