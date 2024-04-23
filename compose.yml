@@ -1,0 +1,54 @@
+networks:
+  server:
+    driver: bridge
+
+
+services:
+
+  nginx:
+    container_name: nginx
+    image: nginx
+    ports:
+      - 8080:80
+    volumes:
+      - ./app/:/var/www/
+      - ./nginx/:/etc/nginx/conf.d/
+      - ./log/nginx/:/var/log/nginx/
+    networks:
+      - server
+
+  php:
+    container_name: php
+    build: ./php/
+    volumes:
+      - ./app/:/var/www/
+    networks:
+      - server
+
+  mysql:
+    container_name: mysql
+    image: mysql
+    command: --default-authentication-plugin=caching_sha2_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: qwerty
+    ports:
+      - 3306:3306
+    networks:
+      - server
+    volumes:
+      - db_volume:/var/lib/mysql/
+
+  quasar-app:
+    container_name: quasar-frontend
+    build: ./front/
+    ports:
+      - 80:80
+    volumes:
+      - ./front/nginx/:/etc/nginx/conf.d/
+    networks:
+      - server
+
+volumes:
+  db_volume:
+    driver: local
