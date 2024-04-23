@@ -9,3 +9,9 @@ RUN pecl install xdebug \
 
 RUN chown -R www-data:www-data /var/www/
 RUN chmod -R 776 /var/www/
+RUN apt-get update && \
+    apt-get install -y git && \
+    apt-get install -y unzip && \
+    rm -rf /var/lib/apt/lists/* \
+
+RUN composer up
