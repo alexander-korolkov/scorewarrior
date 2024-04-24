@@ -39,7 +39,7 @@ http://138.68.109.62:8080/api/doc.json
 The yaml contract located here: `/contract/api.yaml`
 
 # Tests
-Some tests could be found in `/app/tests`. I will add more shortly.
+Some tests could be found in `/app/tests`.
 
 # Commands
 The custom command to create new editor: 
