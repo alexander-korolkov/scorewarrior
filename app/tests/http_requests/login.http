@@ -1,5 +1,5 @@
 ### Send POST to check login
-POST http://localhost:8080/api/login
+POST http://138.68.109.62:8080/api/login
 Content-Type: application/json
 
 {

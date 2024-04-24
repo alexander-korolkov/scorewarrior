@@ -15,3 +15,4 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/* \
 
 RUN composer up
+RUN php bin/console lexik:jwt:generate-keypair

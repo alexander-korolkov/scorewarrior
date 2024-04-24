@@ -1,0 +1,107 @@
+openapi: 3.0.0
+info:
+  title: Your Application API
+  version: 1.0.0
+  description: API documentation for Your Application.
+
+paths:
+  /api/actions/count:
+    get:
+      summary: Retrieve counts of different types of actions
+      responses:
+        '200':
+          description: Successful response with action counts
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  itemGrantsCount:
+                    type: integer
+                  playerMessagesCount:
+                    type: integer
+
+  /api/login:
+    post:
+      summary: Authenticate user and return JWT token
+      responses:
+        '200':
+          description: Authentication successful, JWT token returned
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+
+  /api/items:
+    get:
+      summary: List all items
+      responses:
+        '200':
+          description: List of items
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Item'
+
+  /api/item-grants:
+    post:
+      summary: Create an item grant
+      responses:
+        '201':
+          description: Item grant created successfully
+
+  /api/player-messages:
+    post:
+      summary: Send a message to a player
+      responses:
+        '201':
+          description: Message sent successfully
+
+  /api/users:
+    get:
+      summary: List all users
+      responses:
+        '200':
+          description: List of users
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+
+components:
+  schemas:
+    Item:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        description:
+          type: string
+
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+        username:
+          type: string
+        email:
+          type: string
+
+security:
+  - bearerAuth: []
+
+securitySchemes:
+  bearerAuth:
+    type: http
+    scheme: bearer
+    bearerFormat: JWT
