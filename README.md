@@ -37,7 +37,6 @@ Dynamically generated list of all API endpoints:
 http://138.68.109.62:8080/api/doc.json
 
 The yaml contract located here: `/contract/api.yaml`
-Still working to improve it. 
 
 # Tests
 Some tests could be found in `/app/tests`. I will add more shortly.
