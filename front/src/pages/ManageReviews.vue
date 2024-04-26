@@ -220,7 +220,7 @@ async function fetchActions() {
 
 async function updateStatus(action, newStatus) {
   try {
-    await updatePlayerMessageStatus({ id: action.id, status: newStatus });
+    await apiFunctionRequests.value.updateActionStatus({ id: action.id, status: newStatus });
     $q.notify({
       color: 'positive',
       message: `Action ${newStatus.toLowerCase()} successfully`
